@@ -72,3 +72,8 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 Route::post('/regiterrequest', [FirstController::class, 'ContactUs'])->name('regiterrequest');
+Route::get('showorder', [CartController::class, 'ShowOrder'])->name('showorder');
+Route::get('/approved/{id}', [CartController::class, 'approved']);
+Route::get('/reset_order/{id}', [CartController::class, 'reset_order']);
+Route::get('/delete_order/{id}', [CartController::class, 'delete_order']);
+

@@ -53,4 +53,29 @@ class CartController extends Controller
 
         return view('Products.previousorder',['orders'=>$result , 'user_id' => $user_id]);
     }
+    public function ShowOrder(){
+        $result = Order::with('OrderDetail')->get();
+
+        return view('Products.showorder',['orders'=>$result ]);
+    }
+    public function approved($id){
+        $data=Order::find($id);
+        $data->situation="Approved!";
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function reset_order($id){
+        $data=Order::find($id);
+        $data->situation="In progress";
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function delete_order($id){
+        $data=Order::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+
 }
