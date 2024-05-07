@@ -9,6 +9,7 @@ use App\Http\Controllers\FirstController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MollieController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Http\Request;
 
 // Auth::routes(['register'=>false]);
@@ -76,4 +77,4 @@ Route::get('showorder', [CartController::class, 'ShowOrder'])->name('showorder')
 Route::get('/approved/{id}', [CartController::class, 'approved']);
 Route::get('/reset_order/{id}', [CartController::class, 'reset_order']);
 Route::get('/delete_order/{id}', [CartController::class, 'delete_order']);
-
+Route::get('/sendemail/{id}', [EmailController::class,'sendWelcomeEmail'])->name('sendemail');

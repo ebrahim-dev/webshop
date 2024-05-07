@@ -29,8 +29,8 @@
                                             @else
                                             <h4 class="m-4"> <a class="bt btn-primary p-2 " onclick="return confirm('Are you sure to reset it (make it In progress)?')" href="{{ url('reset_order',$item->id) }}"> Reset </a></h4>
                                             @endif
-
                                             <h4 class="m-4"> <a class="bt btn-danger p-2 " onclick="return confirm('Are you sure to delete it'" href="{{ url('delete_order',$item->id) }}"> Delete </a></h4>
+                                            <h4 class="m-4"> <a class="bt btn-danger p-2 " onclick="return confirm('Are you sure to delete it'" href="{{ url('sendemail',$item->id) }}"> Send Email </a></h4>
                                             <h3>Customer {{ $item->id }}'s details:</h3>
                                             <p><input type="text" value="{{$item->situation}}" id="name" name="name">
                                             </p>
