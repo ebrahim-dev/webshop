@@ -12,20 +12,22 @@ use Illuminate\Queue\SerializesModels;
 
 class WelcomeEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+
     public $mailMessage;
     public $subject;
     public $goal;
+    public $orderDetails;
+    public $totalAmount;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct($mailMessage, $subject, $goal)
+    public function __construct($mailMessage, $subject, $goal, $orderDetails, $totalAmount)
     {
-        $this->mailMessage= $mailMessage;
-        $this->subject= $subject;
-        $this->goal=$goal;
+        $this->mailMessage = $mailMessage;
+        $this->subject = $subject;
+        $this->goal = $goal;
+        $this->orderDetails = $orderDetails;
+        $this->totalAmount = $totalAmount;
     }
+
 
     /**
      * Get the message envelope.
