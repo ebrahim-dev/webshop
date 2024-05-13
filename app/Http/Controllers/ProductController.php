@@ -122,19 +122,66 @@ class ProductController extends Controller
         return view('Products.addcategory',['categories'=>$categories, 'products'=>$products]);
     }
     public function storeCategory (Request $request) {
+        // dd($request->name);
+        $request -> validate([
+            'name'=>'required|max:100',
+            'photo'=>'image|mimes:jpeg,png,jpg,gif|max:9048',
+        ]);
         $categories = Category::all();
         $products = Product::all();
-        $newCategory = new Category();
-        $newCategory -> name = $request -> name;
-        $newCategory -> description = $request -> description;
-        $newCategory -> imagepath =$request -> imagepath;
-        if ($request->has('photo')) {
-          $newCategory -> imagepath =$request->photo->move('uploads',Str::uuid()->toString().'_'. $request->file('photo')->getClientOriginalName());
+        if($request->id){
+            $currentategory= Category::find($request->id);
+            $currentategory->name = $request->name;
+            $currentategory->description = $request->description;
+            $currentategory->imagepath = $request->imagepath;
+                if ($request->has('photo')) {
+                $currentategory -> imagepath =$request->photo->move('uploads',Str::uuid()->toString().'_'. $request->file('photo')->getClientOriginalName());
+
+                }
+                // dd($currentategory);
+            $currentategory-> save();
+
+            //Add new category
+        } else{
+            $newCategory = new Category();
+            $newCategory -> name = $request -> name;
+            $newCategory -> description = $request -> description;
+            $newCategory -> imagepath =$request -> imagepath;
+            if ($request->has('photo')) {
+            $newCategory -> imagepath =$request->photo->move('uploads',Str::uuid()->toString().'_'. $request->file('photo')->getClientOriginalName());
+
+            }
+            // dd( $newCategory);
+            $newCategory -> save();
 
         }
-        $newCategory -> save();
+
         return view('category',['categories'=>$categories, 'products'=>$products]);
     }
+     public function CategoryTable(){
+        $categories = Category::all();
+        return view('Products.categorytable',['categories'=> $categories]);
+    }
+     public function EditCategory ($categoryid=null) {
+        if ($categoryid != null) {
+            $currentCategory= Category::findorfail($categoryid);
+            $allcategories = Category::all();
+            return view('Products.editcategory',['category' => $currentCategory , 'allcategories'=>$allcategories]);
+        } else {
+            return redirect('/addcategory');
+        }
 
+    }
+    public function RemoveCategory ($categoryid=null) {
+        if($categoryid){
+            $currentCategory= Category::find($categoryid);
+            $currentCategory->delete();
+            return redirect('/categorytable');
+        }
+        else{
+            abort(403, "Please enter category id in the route!");
+        }
+
+    }
 
 }

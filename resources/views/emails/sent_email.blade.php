@@ -86,8 +86,12 @@
             <tbody>
                 @foreach ($orderDetails as $detail)
                 <tr>
-                    <td><img height="100px" src="{{ asset($detail->product->imagepath) }}" alt=""></td>
-                    <td>{{ $detail->product->name }}</td>
+                    <td> <img height="100px" src="https://sermani.de/assets/img/{{ basename(str_replace('\\', '/', $detail->product->imagepath)) }}" ></td>
+                    <td>
+                        <a href="https://sermani.de/single-product/{{ $detail->product->id }}">
+                            {{ $detail->product->name }}
+                        </a>
+                    </td>
                     <td>${{ $detail->product->price }}</td>
                     <td>{{ $detail->quantity }}</td>
                     <td>${{ $detail->product->price * $detail->quantity }}</td>

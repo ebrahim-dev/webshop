@@ -68,6 +68,7 @@
                                 <li><a href="{{ route('addproduct') }}">{{ __('string.addProduct') }}</a></li>
                                 <li><a href="{{ route('addcategory') }}">Add Category</a></li>
                                 <li><a href="{{ route('productstable') }}">Product table</a></li>
+                                <li><a href="{{ route('categorytable') }}">Category table</a></li>
                                 <li><a href="{{ route('showorder') }}">Show Orders</a></li>
                                 @endif
                                 <li><a href="{{ route('reviews') }}">{{ __('string.reviews') }}</a></li>

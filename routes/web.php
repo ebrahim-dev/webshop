@@ -80,3 +80,6 @@ Route::get('/delete_order/{id}', [CartController::class, 'delete_order']);
 Route::get('/sendemail/{id}', [EmailController::class,'sendWelcomeEmail'])->name('sendemail');
 Route::get('/addcategory', [ProductController::class, 'addcategory'])->name('addcategory')->middleware('checkrole:admin,saler');
 Route::post('/storecategory', [ProductController::class, 'storeCategory'])->name('storecategory')->middleware('checkrole:admin,saler');
+Route::get('/categorytable',[ProductController::class, 'CategoryTable'])->name('categorytable')->middleware('checkrole:admin,saler');
+Route::get('/editcategory/{categoryid?}', [ProductController::class, 'EditCategory'])->name('editcategory')->middleware('checkrole:admin,saler');
+Route::get('/removecategory/{categoryid?}',[ProductController::class, 'RemoveCategory'])->name('removecategoryt')->middleware('checkrole:admin,saler');
