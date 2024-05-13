@@ -21,7 +21,7 @@
                     <div class="col-lg-4 col-md-6 text-center _{{ $item->category_id }}">
                         <div class="single-product-item">
                             <div class="product-image" >
-                                <a href="single-product.html"><img src="{{ url($item->imagepath) }}" alt="" style="height: 250px"></a>
+                                <a href="/single-product/{{ $item->id }}"><img src="{{ url($item->imagepath) }}" alt="" style="height: 250px"></a>
                             </div>
                             <h3>{{ $item->name }}</h3>
                             <h6>{{ $item->description }}</h6>
