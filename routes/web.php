@@ -60,7 +60,7 @@ Route::post('/storeproductimage',[ProductController::class,'StoreProductImage'])
 
 Route::get('/single-product/{productid}',[ProductController::class, 'showProduct'])->name('single-product');
 Route::get('/completeorder',[CartController::class, 'Completeorder'])->name('completeorder');
-Route::post('/storeorder',[CartController::class,'StoreOrder']);
+Route::post('/storeorder',[CartController::class,'StoreOrder'])->name('storeorder');
 Route::get('/previousorder',[CartController::class, 'PreviousOrder'])->name('previousorder')->middleware('auth');
 Route::post('/lang/{local}', function($local){
     session()->put('local',$local);

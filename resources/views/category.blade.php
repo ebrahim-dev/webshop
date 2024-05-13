@@ -26,7 +26,7 @@
                             <h3>{{ $item->name }}</h3>
                             <h6>{{ $item->description }}</h6>
                             <p class="product-price"> {{ $item->price }}$</p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                            <a href="/addproducttocart/{{ $item->id }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
                     </div>
                 @endforeach
