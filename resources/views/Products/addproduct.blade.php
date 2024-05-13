@@ -23,7 +23,7 @@
                                     </span>
 							</p>
 							<p style="display: flex">
-                                <input type="number" placeholder="Price" name="price" id="price" required style="width: 50%" class="mr-4" value="{{ old('price') }}">
+                                <input type="number" step="0.01" placeholder="Price" name="price" id="price" required style="width: 50%" class="mr-4" value="{{ old('price') }}">
                                     <span class="text-danger">
                                     @error('price')
                                     {{ $message }}
