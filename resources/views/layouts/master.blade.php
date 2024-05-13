@@ -66,6 +66,7 @@
                                 <li><a href="{{ route('categories') }}">Category</a></li>
                                 @if (Auth::user()&&(Auth::user()->role=='admin' || Auth::user()->role=='saler'))
                                 <li><a href="{{ route('addproduct') }}">{{ __('string.addProduct') }}</a></li>
+                                <li><a href="{{ route('addcategory') }}">Add Category</a></li>
                                 <li><a href="{{ route('productstable') }}">Product table</a></li>
                                 <li><a href="{{ route('showorder') }}">Show Orders</a></li>
                                 @endif

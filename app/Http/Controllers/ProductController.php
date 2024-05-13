@@ -39,7 +39,7 @@ class ProductController extends Controller
             'name'=>'required|max:100',
             'price'=>'required',
             'quantity'=>'required|integer',
-            'photo'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo'=>'image|mimes:jpeg,png,jpg,gif|max:9048',
         ]);
         if($request->id){
             $currentProduct= Product::find($request->id);
@@ -61,8 +61,8 @@ class ProductController extends Controller
         $newProduct -> price = $request -> price;
         $newProduct -> quantity = $request -> quantity;
         $newProduct -> description = $request -> description;
-        $newProduct -> imagepath =$request -> imagepath;
         $newProduct -> category_id =$request -> category_id;
+        $newProduct -> imagepath =$request -> imagepath;
         if ($request->has('photo')) {
           $newProduct -> imagepath =$request->photo->move('uploads',Str::uuid()->toString().'_'. $request->file('photo')->getClientOriginalName());
 
@@ -115,6 +115,25 @@ class ProductController extends Controller
         $relatedProducts= Product::where('category_id', $product ->category_id)->where('id', '!=',$productid)->inRandomOrder()->limit(3)->get();
         return view('Products.showProduct', ['product'=>$product, 'relatedProducts'=>$relatedProducts]);
 
+    }
+    public function addcategory (Request $request) {
+        $categories = Category::all();
+        $products = Product::all();
+        return view('Products.addcategory',['categories'=>$categories, 'products'=>$products]);
+    }
+    public function storeCategory (Request $request) {
+        $categories = Category::all();
+        $products = Product::all();
+        $newCategory = new Category();
+        $newCategory -> name = $request -> name;
+        $newCategory -> description = $request -> description;
+        $newCategory -> imagepath =$request -> imagepath;
+        if ($request->has('photo')) {
+          $newCategory -> imagepath =$request->photo->move('uploads',Str::uuid()->toString().'_'. $request->file('photo')->getClientOriginalName());
+
+        }
+        $newCategory -> save();
+        return view('category',['categories'=>$categories, 'products'=>$products]);
     }
 
 

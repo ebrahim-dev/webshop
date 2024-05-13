@@ -78,3 +78,5 @@ Route::get('/approved/{id}', [CartController::class, 'approved']);
 Route::get('/reset_order/{id}', [CartController::class, 'reset_order']);
 Route::get('/delete_order/{id}', [CartController::class, 'delete_order']);
 Route::get('/sendemail/{id}', [EmailController::class,'sendWelcomeEmail'])->name('sendemail');
+Route::get('/addcategory', [ProductController::class, 'addcategory'])->name('addcategory')->middleware('checkrole:admin,saler');
+Route::post('/storecategory', [ProductController::class, 'storeCategory'])->name('storecategory')->middleware('checkrole:admin,saler');
