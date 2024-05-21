@@ -40,6 +40,9 @@ class CartController extends Controller
             $newOrderDetail -> product_id = $item -> product_id;
             $newOrderDetail -> price = $item -> product -> price;
             $newOrderDetail -> quantity = $item -> quantity;
+            $currentProduct= Product::find($item->product_id);
+            $currentProduct->quantity = $currentProduct->quantity-$newOrderDetail -> quantity;
+            $currentProduct-> save();
             $newOrderDetail -> order_id = $newOrder -> id;
             $newOrderDetail -> save();
         }
